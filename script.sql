@@ -10,8 +10,8 @@ SELECT
 	ROUND(base.confirmed / a.population * 100000, 2) conf_per_one_hundred_thousand,
 	ROUND(b.tests_performed / a.population * 100000, 2) tested_per_one_hundred_thousand,
 	ROUND(base.confirmed / b.tests_performed * 100, 2) daily_percent_conf_test
-	--a.population - not necessary - it is used as divisor
-	--b.cumulative - not necessary because we don't know if tested people are still the same
+	-- a.population - not necessary - it is used as divisor
+	-- b.cumulative - not necessary because we don't know if tested people are still the same
 FROM covid19_basic_differences base
 LEFT JOIN lookup_table a
 	ON 1=1
