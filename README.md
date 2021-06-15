@@ -17,7 +17,7 @@ Poslední tabulkou je weather_table, která byla nejproblematičtější. Za prv
 Pokud jde o výpočet hodnoty "season": šlo použít tabulku "seasons", ale zjistil jsem to pozdě, tak jsem tam nechal vlastní algoritmus.
 
 Závěrem bych chtěl říct, že ze začátku jsem dlouho nemohl přijít na princip, jak k výpočtu přistoupit, ale nakonec mi to pomohlo při pochopení stuktury a principů SQL dotazů, SQL syntaxe a hlavně alespoň částečnému porozumění spojování tabulek.
-
+(Po případném schválení projektu a absolvování druhé lekce o vizualizaci dat bych rád vytvořil a projekt doplnil o jednu či více Dashboards na základě dat z výsledné tabulky).
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
