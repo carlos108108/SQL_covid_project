@@ -11,6 +11,10 @@ The third life_expectancy table: there was nothing special about this table, eve
 
 The fourth eco_demo table: I chose year 2015 because this year isn't too far from present time and simultaneously the economies table has in 2015 one of the highest number of values. 
 
+The last weathe_table was the most problematic. Firstly, because of this table I had to use IGNORE command at the beginning of the script. Common SELECT returned table without any problem but when I tried to create table there was a mistake: "truncated incorrect double value". Many times I tried to use CAST order but every time I got "truncated incorrect double value" and I wasn't able to fix it. Secondly, it was unclear how to count "average daily temperature" - it wasn't possible to use so-called "Mannheim's clock" (T(7) + T(14) + 2T(21))/4 so I counted average temperature from values at 6, 9, 12, 15, 18 and 21 hours.
 
+Regarding column "season": I noticed too late that it was possible to use table "seasons" from engeto_databaze2 so I had to create my own algorithm.
+
+Finally I'd like to say that in the beginning it was really complicated task but in the end it helps me to be more oriented within SQL language and the structure of SQL querries.
 
 
