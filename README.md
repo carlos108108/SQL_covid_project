@@ -9,7 +9,7 @@ The second table is the religion table. There was a problem which could result i
 
 The third life_expectancy table: there was nothing special about this table, everything was clear.
 
-The fourth eco_demo table: I chose year 2015 because this year isn't too far from present time and simultaneously 2015 has one of the highest number of values. 
+The fourth eco_demo table: I chose year 2015 because this year isn't too far from present time and simultaneously the economies table has in 2015 one of the highest number of values. 
 
 
 
