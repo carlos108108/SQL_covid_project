@@ -31,6 +31,8 @@ This project consists of 5 'pre-tables' and 1 final SELECT. The key element in t
 So, the first one - index_table - contains the main explanatory variable which is expected to be "index_conf_tested". This explanatory variable consists of three values - tests_performed, confirmed and population. (comment for the lector: I'm not sure how the formula should be written - direct or inverse proportion...?) 
 Besides that there was another problematic place: in case of double value at column covid19_tests.entity the solution is at clause WHERE and condition "b.entity !=... ". Condition "b.entity !=..." could be replaced with aggregate function MAX(b.test_performed) and with clause GROUP BY base.country but it is really slow so I decided to choose the first option.
 
+![Project_index_table_png](https://user-images.githubusercontent.com/75171974/122763210-5f45ae80-d29e-11eb-976a-add25115f5ba.png)
+
 The second table is the religion table. There was a problem which could result in more rows (eight times) because the number of different religions is 8. So I pivoted each religion row in column as well as religion_ratio. (comments for the lector: the solution might be a bit complicated but I hope it works). In terms of religion_table I choose the year 2010 because "population" column in "countries" table was counted before 2020 - some percentage calculation (religion_ratio) returned over 100%.
 
 The third life_expectancy table: there was nothing special about this table, everything was clear.
