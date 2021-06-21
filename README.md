@@ -10,9 +10,13 @@ První tabulka - index_table - obsahuje hlavní vysvětlující proměnnou "inde
 
 Druhá tabulka je o proměnné "náboženství". Tam byl problém s tím, že by se nám počet řádků zvětšil osmi násobně, proto bylo nutné přepivotovat proměnné "religion" a získanou proměnnou "religion_ratio" do sloupců (pozn. pro lektora: uvědomuji si, že to řešení je asi trochu komplikovanější, ale mělo by fungovat). Pro výpočet "religion_ratio" jsem zvolil rok 2010, protože tato proměnná byla počítána pomocí proměnné "population" z tabulky "countries", kde musely být hodnoty dříve než v roce 2020 (což byl nejnovější rok v tabulce "religion"). Pokud se tedy zvolilo populační číslo z roku 2020, vycházelo procentní zastoupení jednotlivých náboženství někdy i přes 100% (pokud bylo v jedné zemí dominantní pouze jedno náboženství).
 
+![Project_religion_table](https://user-images.githubusercontent.com/75171974/122786472-a343ae00-d2b4-11eb-9417-7888c80afe7a.png)
+
 Třetí tabulka byla life_expectancy, tam žádný problém nebyl.
 
 Čtvrtou tabulkou bylo eco_demo: Z tabulky "economies" jsem vybral pro výpočet rok 2015, protože je stále blízko k současnosti a zároveň obsahuje početně nejvíc hodnot.
+
+![Project_lf_eco](https://user-images.githubusercontent.com/75171974/122787902-1699ef80-d2b6-11eb-8fc9-b76462aa5d6a.png)
 
 Poslední tabulkou je weather_table, která byla nejproblematičtější. Za prvé jsem musel ve výsledném kódu použít příkaz IGNORE, protože ačkoli při běžném spuštění SELECT probíhal výpočet bez problémů, při použití CREATE TABLE to neustále hlásilo "truncated incorrect double value". Samozřejmě jsem se to snažil googlit, používat CAST na všechny možné hodnoty (šlo hlavně o "temp"), ale ani po 3 dnech jsem nebyl schopen přijít na jiné řešení, než použít IGNORE - na což jsem při googlení narazil až ten třetí den :) A za druhé nebylo úplně jasné, jak vypočítat průměrnou denní (nikoli noční) teplotu. Použít výpočet podle tzv. mannheimských hodin (T(7) + T(14) + 2T(21))/4 nebylo možné, takže jsem zvolil prostý průměr z hodnot mimo půlnoc a třetí hodinu ranní. V neposlední řadě tu nastal problém s připojeném této tabulky, šlo to jen přes "city" ve "weather" a "capital_city" v "countries". Z toho důvodu je počet států, pro které byly tyto hodnoty počítány, poněkud omezen.
 
@@ -35,9 +39,13 @@ Besides that there was another problematic place: in case of double value at col
 
 The second table is the religion table. There was a problem which could result in more rows (eight times) because the number of different religions is 8. So I pivoted each religion row in column as well as religion_ratio. (comments for the lector: the solution might be a bit complicated but I hope it works). In terms of religion_table I choose the year 2010 because "population" column in "countries" table was counted before 2020 - some percentage calculation (religion_ratio) returned over 100%.
 
+![Project_religion_table](https://user-images.githubusercontent.com/75171974/122786499-a9d22580-d2b4-11eb-80a5-cab8d6deef12.png)
+
 The third life_expectancy table: there was nothing special about this table, everything was clear.
 
 The fourth eco_demo table: I chose year 2015 because this year isn't too far from present time and simultaneously the economies table has in 2015 one of the highest number of values. 
+
+![Project_lf_eco](https://user-images.githubusercontent.com/75171974/122787935-1f8ac100-d2b6-11eb-862d-461b4adb4b12.png)
 
 The last weather_table was the most problematic. Firstly, because of this table I had to use IGNORE command at the beginning of the script. Common SELECT returned table without any problem but when I tried to create table there was a mistake: "truncated incorrect double value". Many times I tried to use CAST order but every time I got "truncated incorrect double value" and I wasn't able to fix it. Secondly, it was unclear how to count "average daily temperature" - it wasn't possible to use so-called "Mannheim's clock" (T(7) + T(14) + 2T(21))/4 so I counted average temperature from values at 6, 9, 12, 15, 18 and 21 hours. Last but not least there was unable to join this table with others via country or iso3 or ISO columns so the only possibility I found was connection via "city" (weather) and "capital_city" (countries). For this reason the number of countries with counted these values is rather restricted.
 
