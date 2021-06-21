@@ -3,27 +3,27 @@ IGNORE WITH index_table AS (
 SELECT
 	base.`date` ,
 	base.country ,
-	a.iso3 ,
+	lt.iso3 ,
 	base.confirmed ,
-	b.tests_performed ,
-	ROUND(base.confirmed / (b.tests_performed / a.population * 100000), 2) index_conf_tested,
-	ROUND(base.confirmed / a.population * 100000, 2) conf_per_one_hundred_thousand,
-	ROUND(b.tests_performed / a.population * 100000, 2) tested_per_one_hundred_thousand,
-	ROUND(base.confirmed / b.tests_performed * 100, 2) daily_percent_conf_test
-	-- a.population - not necessary - it is used as divisor
-	-- b.cumulative - not necessary because we don't know if tested people are still the same
+	ct.tests_performed ,
+	ROUND(base.confirmed / (ct.tests_performed / lt.population * 100000), 2) index_conf_tested,
+	ROUND(base.confirmed / lt.population * 100000, 2) conf_per_one_hundred_thousand,
+	ROUND(ct.tests_performed / lt.population * 100000, 2) tested_per_one_hundred_thousand,
+	ROUND(base.confirmed / ct.tests_performed * 100, 2) daily_percent_conf_test
+	-- lt.population - not necessary - it is used as divisor
+	-- ct.cumulative - not necessary because we don't know if tested people are still the same
 FROM covid19_basic_differences base
-LEFT JOIN lookup_table a
+LEFT JOIN lookup_table lt
 	ON 1=1
-	AND base.country = a.country
-LEFT JOIN covid19_tests b
-	ON a.iso3 = b.ISO
-	AND base.`date` = b.`date`
+	AND base.country = lt.country
+LEFT JOIN covid19_tests ct
+	ON lt.iso3 = ct.ISO
+	AND base.`date` = ct.`date`
 WHERE 1=1
-	AND b.entity != 'units unclear (incl. non-PCR)' -- related to US
-	AND b.entity != 'people tested' -- related to France, India, Italy, Poland
-	AND a.province IS NULL
-	AND b.tests_performed IS NOT NULL
+	AND ct.entity != 'units unclear (incl. non-PCR)' -- related to US
+	AND ct.entity != 'people tested' -- related to France, India, Italy, Poland
+	AND lt.province IS NULL
+	AND ct.tests_performed IS NOT NULL
 ),
 religion_table AS (
 WITH tmp_religion_table AS(
